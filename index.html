@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise</title>
-    
-    <!-- Google Fonts & FontAwesome -->
+    <title>The Birthday Experience</title>
+    <!-- Google Fonts for Typography matching design -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -20,597 +18,454 @@
         }
 
         body {
-            background-color: #030005;
+            background-color: #0b0213;
             font-family: 'Poppins', sans-serif;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* App Shell Frame */
+        /* Phone Screen Container */
         .app-container {
             width: 100%;
             max-width: 430px;
-            height: 900px;
-            max-height: 100vh;
+            height: 100vh;
+            max-height: 932px;
             position: relative;
-            background: #090211;
-            box-shadow: 0 0 60px rgba(186, 0, 255, 0.25);
+            background: url('1000260983.png') center top / cover no-repeat;
+            box-shadow: 0 0 50px rgba(255, 0, 128, 0.2);
             overflow: hidden;
-            border-radius: 16px;
-        }
-
-        /* Background Layer Container with subtle movement animation */
-        .bg-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.ibb.co/L5fN8s0/1000260940.jpg'); /* Exact image source */
-            background-size: cover;
-            background-position: center;
-            animation: subtleGlow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes subtleGlow {
-            0% { transform: scale(1); filter: brightness(1); }
-            100% { transform: scale(1.015); filter: brightness(1.08); }
-        }
-
-        /* Cover Mask: Seamlessly hides "The Birthday Experience", "SCENE 1", and Top-Left Music Icon */
-        .header-mask-top-left {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, #10031c 80%, transparent 100%);
-            border-radius: 50%;
-            z-index: 5;
-        }
-
-        .header-mask-center {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 82%;
-            height: 120px;
-            background: radial-gradient(ellipse at top, #13011a 60%, rgba(19, 1, 26, 0.95) 85%, transparent 100%);
-            z-index: 5;
-        }
-
-        /* Floating Particle Layer */
-        #particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        /* Top Bar Navigation Header */
-        .top-bar {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            width: 100%;
-            padding: 0 20px;
             display: flex;
-            justify-content: flex-end;
+            flex-direction: column;
             align-items: center;
+        }
+
+        /* Hide Original "SCENE 1" text block from background image */
+        .scene-mask {
+            position: absolute;
+            top: 15.5%;
+            width: 80%;
+            height: 30px;
+            background: radial-gradient(ellipse at center, rgba(15, 3, 25, 0.95) 0%, rgba(15, 3, 25, 0.8) 70%, transparent 100%);
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        /* Top Header Icons */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 25px;
             z-index: 10;
         }
 
         .icon-btn {
-            width: 42px;
-            height: 42px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
             color: #fff;
             font-size: 16px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
         }
 
-        /* Overlay Content Layout */
-        .content {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 25px 20px 30px 20px;
+        .icon-btn:active {
+            transform: scale(0.9);
         }
 
-        /* Clean Replacement Header Text */
-        .header-title-box {
-            text-align: center;
-            margin-top: 35px;
-        }
-
-        .title-text {
-            font-size: 30px;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 64, 129, 0.5);
-            letter-spacing: 0.5px;
-        }
-
-        .subtitle-text {
-            font-size: 13.5px;
-            color: #d1b3e0;
-            margin-top: 4px;
-            font-weight: 400;
-        }
-
-        .subtitle-text span {
-            color: #ffcc00;
-            font-weight: 600;
-        }
-
-        /* Heart Divider Lines */
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 6px 0;
-            color: #ff4081;
-            font-size: 11px;
-        }
-
-        .divider .line {
-            width: 40px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #ff4081, transparent);
-        }
-
-        /* Subtle Breathing Animation Overlay for Teddy Area */
-        .teddy-motion-overlay {
+        /* Animated Floating Hearts Particles */
+        .heart-particle {
             position: absolute;
-            top: 26%;
-            left: 12%;
-            width: 48%;
-            height: 32%;
+            color: #ff3385;
+            font-size: 14px;
             pointer-events: none;
+            animation: floatUp 4s infinite ease-in-out;
+            opacity: 0.7;
             z-index: 3;
-            animation: teddyBreath 3.5s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 5px #ff007f);
         }
 
-        @keyframes teddyBreath {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-4px) scale(1.015); }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-120px) scale(1.2) rotate(20deg); opacity: 0; }
         }
 
-        /* Spacer pushes lower UI overlay cards to match screenshot alignment */
-        .spacer {
-            flex-grow: 1;
-        }
-
-        /* Live Countdown Card */
-        .timer-card {
+        /* Breathing Animation for Teddy area interaction */
+        .teddy-breathing-layer {
+            position: absolute;
+            top: 30%;
             width: 100%;
-            background: rgba(18, 5, 28, 0.75);
-            border: 1.5px solid #a832a4;
-            border-radius: 22px;
-            padding: 16px 12px;
-            box-shadow: 0 0 25px rgba(168, 50, 164, 0.4), inset 0 0 12px rgba(168, 50, 164, 0.2);
-            backdrop-filter: blur(10px);
+            height: 300px;
+            z-index: 4;
+            animation: floatTeddy 3s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes floatTeddy {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-6px); }
+        }
+
+        /* Dynamic Speech Bubble Overlay */
+        .speech-bubble {
+            position: absolute;
+            top: 31%;
+            right: 12%;
+            background: radial-gradient(circle, #33001b 0%, #1a000e 100%);
+            border: 2px solid #ff007f;
+            box-shadow: 0 0 15px #ff007f, inset 0 0 10px rgba(255, 0, 128, 0.5);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: #ffffff;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: center;
+            z-index: 10;
+            animation: pulseGlow 2s infinite alternate;
+            transition: all 0.5s ease;
+        }
+
+        .speech-bubble::before, .speech-bubble::after {
+            content: '';
+            position: absolute;
+            background: #1a000e;
+            border: 2px solid #ff007f;
+            border-radius: 50%;
+        }
+
+        .speech-bubble::before {
+            width: 10px;
+            height: 10px;
+            bottom: -12px;
+            left: 20px;
+        }
+
+        .speech-bubble::after {
+            width: 6px;
+            height: 6px;
+            bottom: -20px;
+            left: 12px;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px #ff007f, inset 0 0 5px rgba(255, 0, 128, 0.5); }
+            100% { box-shadow: 0 0 22px #ff00aa, inset 0 0 12px rgba(255, 0, 128, 0.8); }
+        }
+
+        /* Interactive Timer Container Overlay */
+        .timer-card {
+            position: absolute;
+            bottom: 23%;
+            width: 88%;
+            background: rgba(20, 5, 28, 0.85);
+            border: 2px solid #a100ff;
+            box-shadow: 0 0 20px rgba(161, 0, 255, 0.6), inset 0 0 15px rgba(255, 0, 128, 0.3);
+            border-radius: 20px;
+            padding: 15px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 12px;
+            backdrop-filter: blur(8px);
+            z-index: 10;
         }
 
-        .timer-header {
+        .timer-title {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #ffffff;
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .timer-header i {
-            color: #ff4081;
-            font-size: 13px;
+            margin-bottom: 12px;
         }
 
         .timer-display {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-        }
-
-        .time-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 12px;
+            width: 100%;
         }
 
         .time-box {
-            background: #11021c;
-            border: 1.5px solid #ff4081;
+            background: rgba(10, 0, 18, 0.9);
+            border: 1px solid #ff00aa;
+            box-shadow: inset 0 0 8px rgba(255, 0, 170, 0.5), 0 0 10px rgba(255, 0, 170, 0.3);
             border-radius: 12px;
-            width: 68px;
-            height: 52px;
+            width: 75px;
+            height: 55px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Fredoka', sans-serif;
             font-size: 28px;
-            font-weight: 700;
-            color: #ffcc00;
-            box-shadow: 0 0 12px rgba(255, 64, 129, 0.4), inset 0 0 8px rgba(0,0,0,0.8);
+            font-weight: 600;
+            color: #ffea00;
+            text-shadow: 0 0 8px rgba(255, 234, 0, 0.8);
         }
 
-        .time-label {
-            font-size: 11px;
-            color: #c4a9d4;
-            margin-top: 5px;
-            font-weight: 400;
-        }
-
-        .colon-separator {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 22px;
-            color: #ff4081;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
-
-        /* Wish Banner */
-        .wish-banner {
-            width: 100%;
-            border: 1.5px dashed #8e24aa;
-            border-radius: 16px;
-            padding: 10px 14px;
-            background: rgba(15, 3, 24, 0.65);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            backdrop-filter: blur(6px);
-        }
-
-        .wish-icon-left {
-            font-size: 26px;
-            color: #ffcc00;
-            filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.7));
-        }
-
-        .wish-icon-right {
+        .time-colon {
             font-size: 24px;
-            color: #ff4081;
-            filter: drop-shadow(0 0 8px rgba(255, 64, 129, 0.7));
+            font-weight: bold;
+            color: #ff00aa;
+            text-shadow: 0 0 8px #ff00aa;
         }
 
-        .wish-text {
-            text-align: center;
-            font-size: 12px;
-            color: #e2d5e8;
-            line-height: 1.4;
-            flex: 1;
-            padding: 0 8px;
-        }
-
-        .wish-text span {
-            color: #ffcc00;
-        }
-
-        /* Bottom Notification Card */
-        .notification-card {
+        .time-labels {
+            display: flex;
+            justify-content: space-around;
             width: 100%;
-            background: rgba(18, 5, 28, 0.75);
-            border: 1.5px solid #8e24aa;
-            border-radius: 16px;
-            padding: 8px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 0 15px rgba(142, 36, 170, 0.25);
-            backdrop-filter: blur(8px);
-        }
-
-        .notif-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .clock-badge {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255, 64, 129, 0.15);
-            border: 1px solid #ff4081;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-size: 13px;
-        }
-
-        .notif-text {
+            margin-top: 6px;
+            padding: 0 10px;
             font-size: 11px;
-            color: #d1b3e0;
-            line-height: 1.3;
+            color: #d1bdff;
         }
 
-        .bell-icon {
-            font-size: 22px;
-            color: #ffcc00;
-            filter: drop-shadow(0 0 6px rgba(255, 204, 0, 0.6));
-            animation: bellRing 2s infinite ease-in-out;
-        }
-
-        @keyframes bellRing {
-            0%, 100% { transform: rotate(0); }
-            10%, 30%, 50% { transform: rotate(12deg); }
-            20%, 40% { transform: rotate(-12deg); }
-            60% { transform: rotate(0); }
-        }
-
-        /* Let's Go Button (Appears automatically when timer finishes) */
+        /* "Let's Go" Action Button */
         .lets-go-btn {
             display: none;
-            width: 100%;
-            margin-top: 10px;
-            padding: 15px;
-            background: linear-gradient(90deg, #ff4081, #ff80ab);
-            border: none;
+            width: 88%;
+            padding: 16px 0;
+            background: linear-gradient(135deg, #ff007f, #a100ff);
+            border: 2px solid #ffffff;
             border-radius: 30px;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
+            color: #ffffff;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
             letter-spacing: 1px;
+            text-align: center;
+            text-transform: uppercase;
+            box-shadow: 0 0 25px #ff007f, 0 0 10px #ffea00;
             cursor: pointer;
-            box-shadow: 0 0 30px rgba(255, 64, 129, 0.9);
-            animation: pulseBtn 1.5s infinite alternate;
             z-index: 20;
+            position: absolute;
+            bottom: 23%;
+            animation: bounceBtn 1.5s infinite alternate;
         }
 
-        @keyframes pulseBtn {
-            0% { transform: scale(0.98); box-shadow: 0 0 15px rgba(255, 64, 129, 0.6); }
-            100% { transform: scale(1.03); box-shadow: 0 0 35px rgba(255, 64, 129, 1); }
+        @keyframes bounceBtn {
+            0% { transform: scale(1); box-shadow: 0 0 20px #ff007f; }
+            100% { transform: scale(1.05); box-shadow: 0 0 35px #ff00aa, 0 0 15px #ffea00; }
+        }
+
+        /* Helper Quick Test Button (To test timer end state instantly) */
+        .dev-override {
+            position: absolute;
+            bottom: 5px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            z-index: 30;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <!-- Background Layer -->
-        <div class="bg-layer"></div>
+    <div class="app-container" id="appContainer">
+        <!-- Mask overlay to cover "SCENE 1" text from standard background image -->
+        <div class="scene-mask"></div>
 
-        <!-- Mask to remove music icon and top text headers -->
-        <div class="header-mask-top-left"></div>
-        <div class="header-mask-center"></div>
+        <!-- Floating Particles Layer -->
+        <div class="heart-particle" style="left: 15%; top: 60%; animation-delay: 0s;">💗</div>
+        <div class="heart-particle" style="left: 80%; top: 55%; animation-delay: 1.5s;">💖</div>
+        <div class="heart-particle" style="left: 10%; top: 40%; animation-delay: 2.5s;">💕</div>
 
-        <!-- Breathing Motion Effect Overlay over Teddy -->
-        <div class="teddy-motion-overlay"></div>
-
-        <!-- Particle Effect Layer -->
-        <canvas id="particles-canvas"></canvas>
-
-        <!-- Top Right Audio Icon (Music icon on left removed) -->
+        <!-- Header Bar -->
         <div class="top-bar">
-            <div class="icon-btn" id="sound-toggle">
-                <i class="fa-solid fa-volume-high"></i>
+            <div class="icon-btn" id="musicToggle">🎵</div>
+            <div class="icon-btn" id="soundToggle">🔊</div>
+        </div>
+
+        <!-- Breathing Teddy Effect Overlay -->
+        <div class="teddy-breathing-layer"></div>
+
+        <!-- Teddy Thinking Bubble -->
+        <div class="speech-bubble" id="speechBubble">
+            What's the<br>surprise? 🤔
+        </div>
+
+        <!-- Countdown Timer Block -->
+        <div class="timer-card" id="timerCard">
+            <div class="timer-title">
+                <span>💖</span> <span>Surprise Reveals In</span> <span>💖</span>
+            </div>
+            <div class="timer-display">
+                <div class="time-box" id="hours">00</div>
+                <div class="time-colon">:</div>
+                <div class="time-box" id="minutes">00</div>
+                <div class="time-colon">:</div>
+                <div class="time-box" id="seconds">10</div>
+            </div>
+            <div class="time-labels">
+                <span>Hours</span>
+                <span>Minutes</span>
+                <span>Seconds</span>
             </div>
         </div>
 
-        <!-- Main Content Overlay -->
-        <div class="content">
-            
-            <div class="header-title-box">
-                <div class="title-text">A Special Surprise</div>
-                <div class="subtitle-text">The magic will reveal at the <span>right time...</span></div>
-                <div class="divider">
-                    <i class="fa-solid fa-heart"></i>
-                    <div class="line"></div>
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-            </div>
+        <!-- Let's Go Button (Appears when timer hits 00:00:00) -->
+        <button class="lets-go-btn" id="letsGoBtn">LET'S GO! 🚀</button>
 
-            <div class="spacer"></div>
-
-            <!-- Countdown Timer Block -->
-            <div class="timer-card">
-                <div class="timer-header">
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-regular fa-calendar-days"></i>
-                    <span>Surprise Reveals In</span>
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <div class="timer-display">
-                    <div class="time-block">
-                        <div class="time-box" id="hours">02</div>
-                        <div class="time-label">Hours</div>
-                    </div>
-                    <div class="colon-separator">:</div>
-                    <div class="time-block">
-                        <div class="time-box" id="minutes">15</div>
-                        <div class="time-label">Minutes</div>
-                    </div>
-                    <div class="colon-separator">:</div>
-                    <div class="time-block">
-                        <div class="time-box" id="seconds">37</div>
-                        <div class="time-label">Seconds</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wish Box -->
-            <div class="wish-banner">
-                <i class="fa-solid fa-star wish-icon-left"></i>
-                <div class="wish-text">
-                    Your <span>special wish</span> is on the way...<br>
-                    Hang tight, it will be worth the wait!
-                </div>
-                <i class="fa-regular fa-heart wish-icon-right"></i>
-            </div>
-
-            <!-- Notification Bottom Bar -->
-            <div class="notification-card">
-                <div class="notif-left">
-                    <div class="clock-badge">
-                        <i class="fa-regular fa-clock"></i>
-                    </div>
-                    <div class="notif-text">
-                        You will get a notification<br>when the surprise is ready!
-                    </div>
-                </div>
-                <i class="fa-solid fa-bell bell-icon"></i>
-            </div>
-
-            <!-- "Let's Go!" Button -->
-            <button class="lets-go-btn" id="lets-go-btn">Let's Go!</button>
-
-        </div>
+        <!-- Developer Shortcut to test Timer End instantly -->
+        <div class="dev-override" onclick="triggerTimerComplete()">[Test Timer Finish]</div>
     </div>
 
-    <!-- Live Canvas Floating Particle Engine & Countdown Script -->
     <script>
-        // Floating Heart, Star, and Sparkle Particle System
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
+        /* --- Web Audio API Synthesizers (No external files needed) --- */
+        let audioCtx = null;
+        let isMusicPlaying = false;
+        let musicInterval = null;
 
-        function resizeCanvas() {
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = canvas.parentElement.clientHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const particlesArr = [];
-        const particleNum = 50;
-
-        class Particle {
-            constructor() {
-                this.reset();
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 7 + 2;
-                this.speedY = -(Math.random() * 0.7 + 0.2);
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.opacity = Math.random() * 0.8 + 0.2;
-                this.type = Math.random() > 0.45 ? 'heart' : (Math.random() > 0.5 ? 'star' : 'dot');
-                this.color = Math.random() > 0.5 ? '#ff4081' : '#ffcc00';
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-
-                if (this.y < -10) {
-                    this.y = canvas.height + 10;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-
-                if (this.type === 'heart') {
-                    ctx.beginPath();
-                    let topHeight = this.size * 0.3;
-                    ctx.moveTo(this.x, this.y + topHeight);
-                    ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topHeight);
-                    ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
-                    ctx.bezierCurveTo(this.x, this.y + (this.size + topHeight) / 2, this.x + this.size / 2, this.y + (this.size + topHeight) / 2, this.x + this.size / 2, this.y + topHeight);
-                    ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topHeight);
-                    ctx.closePath();
-                    ctx.fill();
-                } else if (this.type === 'star') {
-                    ctx.beginPath();
-                    for (let i = 0; i < 5; i++) {
-                        ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * this.size + this.x,
-                                   -Math.sin((18 + i * 72) * Math.PI / 180) * this.size + this.y);
-                        ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * (this.size / 2) + this.x,
-                                   -Math.sin((54 + i * 72) * Math.PI / 180) * (this.size / 2) + this.y);
-                    }
-                    ctx.closePath();
-                    ctx.fill();
-                } else {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size / 3, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-                ctx.restore();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
             }
         }
 
-        for (let i = 0; i < particleNum; i++) {
-            particlesArr.push(new Particle());
+        // Water Bubble Sound Effect Synthesizer
+        function playWaterBubbleSound() {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            
+            // Frequency sweep simulating liquid bubble pop
+            const startFreq = 300 + Math.random() * 150;
+            const endFreq = startFreq + 400 + Math.random() * 200;
+
+            osc.frequency.setValueAtTime(startFreq, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(endFreq, audioCtx.currentTime + 0.08);
+
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
         }
 
-        function renderParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particlesArr.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(renderParticles);
-        }
-        renderParticles();
+        // Soft Ambient Chimes Melody Generator
+        function playSoftNote() {
+            if (!isMusicPlaying || !audioCtx) return;
 
-        // Live Countdown Logic
-        let totalSeconds = (2 * 3600) + (15 * 60) + 37; // Initialized to 02:15:37
+            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25]; // Pentatonic C scale
+            const freq = notes[Math.floor(Math.random() * notes.length)];
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 0.3);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 2.5);
+        }
+
+        function toggleMusic() {
+            initAudio();
+            isMusicPlaying = !isMusicPlaying;
+            const musicBtn = document.getElementById('musicToggle');
+
+            if (isMusicPlaying) {
+                musicBtn.style.background = "rgba(255, 0, 128, 0.5)";
+                musicInterval = setInterval(playSoftNote, 800);
+            } else {
+                musicBtn.style.background = "rgba(255, 255, 255, 0.1)";
+                clearInterval(musicInterval);
+            }
+        }
+
+        /* --- Click Event Listener for Water Bubble Sound --- */
+        document.getElementById('appContainer').addEventListener('click', (e) => {
+            // Play bubble sound on every touch/click
+            playWaterBubbleSound();
+        });
+
+        document.getElementById('musicToggle').addEventListener('click', (e) => {
+            e.stopPropagation(); // Avoid duplicate bubble trigger
+            playWaterBubbleSound();
+            toggleMusic();
+        });
+
+        /* --- Countdown Timer Logic --- */
+        let totalSeconds = 10; // Set initial countdown length in seconds
 
         const hoursEl = document.getElementById('hours');
         const minutesEl = document.getElementById('minutes');
         const secondsEl = document.getElementById('seconds');
-        const letsGoBtn = document.getElementById('lets-go-btn');
+        const speechBubble = document.getElementById('speechBubble');
+        const timerCard = document.getElementById('timerCard');
+        const letsGoBtn = document.getElementById('letsGoBtn');
 
-        function updateCountdown() {
+        function updateTimer() {
             if (totalSeconds <= 0) {
-                clearInterval(timerInterval);
-                hoursEl.textContent = "00";
-                minutesEl.textContent = "00";
-                secondsEl.textContent = "00";
-                
-                // Show "Let's Go!" Button upon timer completion
-                letsGoBtn.style.display = "block";
+                clearInterval(timerCountdown);
+                triggerTimerComplete();
                 return;
             }
 
             totalSeconds--;
 
-            const h = Math.floor(totalSeconds / 3600);
-            const m = Math.floor((totalSeconds % 3600) / 60);
-            const s = totalSeconds % 60;
+            const hrs = Math.floor(totalSeconds / 3600);
+            const mins = Math.floor((totalSeconds % 3600) / 60);
+            const secs = totalSeconds % 60;
 
-            hoursEl.textContent = h < 10 ? '0' + h : h;
-            minutesEl.textContent = m < 10 ? '0' + m : m;
-            secondsEl.textContent = s < 10 ? '0' + s : s;
+            hoursEl.textContent = String(hrs).padStart(2, '0');
+            minutesEl.textContent = String(mins).padStart(2, '0');
+            secondsEl.textContent = String(secs).padStart(2, '0');
         }
 
-        const timerInterval = setInterval(updateCountdown, 1000);
+        function triggerTimerComplete() {
+            hoursEl.textContent = "00";
+            minutesEl.textContent = "00";
+            secondsEl.textContent = "00";
 
-        // Action on "Let's Go!" Click
-        letsGoBtn.addEventListener('click', () => {
-            alert("The surprise is ready! Entering the Birthday Experience...");
+            // Update Teddy's Thinking Text
+            speechBubble.innerHTML = "Let's Go! 🎉";
+            speechBubble.style.transform = "scale(1.1)";
+            speechBubble.style.borderColor = "#ffea00";
+
+            // Hide Timer and Display "Let's Go" Button
+            timerCard.style.display = "none";
+            letsGoBtn.style.display = "block";
+        }
+
+        // Start Countdown Interval
+        const timerCountdown = setInterval(updateTimer, 1000);
+
+        // Action when "Let's Go" Button is clicked
+        letsGoBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            playWaterBubbleSound();
+            alert("✨ Surprise Unlocked! Proceeding to the next page... ✨");
         });
     </script>
 </body>

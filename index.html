@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Magical Evening</title>
+  <title>Wish With Teddy</title>
   <style>
-    /* Reset and Base Styles */
+    /* Reset & Fonts */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,73 +13,557 @@
     }
 
     body {
-      font-family: 'Georgia', serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #fff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      /* Replace 'background.jpg' with your image file path */
+      justify-content: space-between;
+      /* Background setup */
       background: url('image/file_000000004fa081fab7b1fedd60ec10cd.png') no-repeat center center fixed;
       background-size: cover;
+      overflow-x: hidden;
+      padding: 1.5rem 1rem;
     }
 
-    /* Glassmorphism Card Overlay */
-    .content-card {
-      background: rgba(20, 10, 25, 0.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 182, 193, 0.2);
-      border-radius: 16px;
-      padding: 2.5rem;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    /* Top Action Buttons */
+    .top-controls {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      color: #ffb7c5; /* Soft rose color matching the glow */
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #f3e5f5;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(20, 10, 30, 0.6);
+      border: 1px solid rgba(255, 182, 193, 0.3);
       color: #fff;
-      background: linear-gradient(135deg, #e91e63, #9c27b0);
-      border: none;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+    /* Header Titles */
+    .header-section {
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .main-title {
+      font-family: 'Georgia', serif;
+      font-size: 2.2rem;
+      color: #ffd700;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+      font-weight: bold;
+      line-height: 1.1;
+    }
+
+    .sub-title-small {
+      font-size: 0.85rem;
+      color: #ff94c2;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 8px 0 4px 0;
+    }
+
+    .main-headline {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #f3e5f5;
+      margin-top: 4px;
+    }
+
+    .highlight-gold {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    /* Scene Container (Teddy + Bubble + Clock) */
+    .scene-container {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      margin: 15px 0;
+    }
+
+    /* Thinking Bubble */
+    .thought-bubble {
+      position: absolute;
+      top: -20px;
+      right: 25px;
+      background: rgba(30, 10, 35, 0.85);
+      border: 2px solid #ff2a8d;
+      border-radius: 25px;
+      padding: 12px 20px;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255, 42, 141, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 20;
+      animation: floatBubble 3s ease-in-out infinite alternate;
+    }
+
+    .thought-bubble::before, .thought-bubble::after {
+      content: '';
+      position: absolute;
+      background: rgba(30, 10, 35, 0.85);
+      border: 2px solid #ff2a8d;
+      border-radius: 50%;
+    }
+
+    .thought-bubble::before {
+      width: 12px;
+      height: 12px;
+      bottom: -12px;
+      left: 20px;
+    }
+
+    .thought-bubble::after {
+      width: 7px;
+      height: 7px;
+      bottom: -20px;
+      left: 12px;
+    }
+
+    @keyframes floatBubble {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
+    /* SVG Teddy Bear Styling & Keyframes */
+    .teddy-svg {
+      width: 180px;
+      height: 200px;
+      overflow: visible;
+    }
+
+    .teddy-head {
+      transform-origin: 100px 95px;
+      animation: headMotion 6s ease-in-out infinite alternate;
+    }
+
+    .teddy-thinking-hand {
+      transform-origin: 112px 90px;
+      animation: handThinkingMotion 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes headMotion {
+      0% { transform: rotate(0deg); }
+      30% { transform: rotate(-4deg) translateY(1px); }
+      70% { transform: rotate(5deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
+    @keyframes handThinkingMotion {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(-5deg) translateY(-2px); }
+      100% { transform: rotate(3deg); }
+    }
+
+    /* Analog Clock Styles */
+    .clock-container {
+      position: relative;
+      width: 100px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .clock-body {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, #fffdf0 0%, #e6cb96 70%, #8a5a27 100%);
+      border: 5px solid #d4af37;
+      border-radius: 50%;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.6);
+    }
+
+    .clock-bell-left, .clock-bell-right {
+      position: absolute;
+      top: -10px;
+      width: 25px;
+      height: 14px;
+      background: linear-gradient(135deg, #ffd700, #b8860b);
+      border-radius: 15px 15px 0 0;
+    }
+    .clock-bell-left { left: 4px; transform: rotate(-30deg); }
+    .clock-bell-right { right: 4px; transform: rotate(30deg); }
+
+    .clock-foot-left, .clock-foot-right {
+      position: absolute;
+      bottom: 25px;
+      width: 8px;
+      height: 16px;
+      background: #b8860b;
+      z-index: -1;
+    }
+    .clock-foot-left { left: 14px; transform: rotate(25deg); }
+    .clock-foot-right { right: 14px; transform: rotate(-25deg); }
+
+    .clock-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      background: #333;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+    }
+
+    .hand {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      transform-origin: bottom center;
+      background: #222;
+      border-radius: 4px;
+      z-index: 4;
+    }
+
+    .hand.hour { width: 3px; height: 22px; margin-left: -1.5px; }
+    .hand.minute { width: 2px; height: 30px; margin-left: -1px; background: #111; }
+    .hand.second { width: 1px; height: 34px; margin-left: -0.5px; background: #e91e63; }
+
+    /* UI Cards Container */
+    .cards-container {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Main Countdown Box */
+    .countdown-card {
+      background: rgba(20, 10, 30, 0.75);
+      border: 1px solid #ff2a8d;
+      border-radius: 20px;
+      padding: 18px 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 42, 141, 0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .countdown-title {
+      color: #ffb7c5;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .timer-boxes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .time-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time-box {
+      background: rgba(10, 5, 20, 0.8);
+      border: 1px solid rgba(255, 42, 141, 0.5);
+      border-radius: 12px;
+      width: 70px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .time-label {
+      font-size: 0.75rem;
+      color: #d1c4e9;
+      margin-top: 6px;
+    }
+
+    .colon {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff2a8d;
+      margin-bottom: 18px;
+    }
+
+    /* Text Banner Box */
+    .info-card {
+      background: rgba(20, 10, 30, 0.65);
+      border: 1px dashed rgba(255, 182, 193, 0.4);
+      border-radius: 16px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .info-card-text {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #f3e5f5;
+      flex: 1;
+    }
+
+    /* Notification Box */
+    .notification-card {
+      background: rgba(20, 10, 30, 0.75);
+      border: 1px solid rgba(255, 42, 141, 0.4);
+      border-radius: 25px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(8px);
+    }
+
+    .notif-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .notif-icon {
+      width: 36px;
+      height: 36px;
+      background: #ff2a8d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255, 42, 141, 0.6);
+    }
+
+    .notif-text {
+      font-size: 0.9rem;
+      color: #ffffff;
+      text-align: left;
     }
   </style>
 </head>
 <body>
 
-  <main class="content-card">
-    <h1>An Evening to Remember</h1>
-    <p>Join us on a walk down this magical cobblestone lane as we celebrate romance, light, and memorable moments.</p>
-    <a href="#" class="btn">Explore More</a>
-  </main>
+  <!-- Top Controls -->
+  <div class="top-controls">
+    <button class="icon-btn">🎵</button>
+    <button class="icon-btn">🔊</button>
+  </div>
+
+  <!-- Header Text -->
+  <header class="header-section">
+    <h1 class="main-title">The Birthday Experience</h1>
+    <div class="sub-title-small">✦ SCENE 1 ✦</div>
+    <h2 class="main-headline">A Special Surprise</h2>
+    <p class="tagline">The magic will reveal at the <span class="highlight-gold">right time...</span></p>
+  </header>
+
+  <!-- Interactive Scene (Teddy + Bubble + Working Clock) -->
+  <div class="scene-container">
+    
+    <!-- Floating Thought Bubble -->
+    <div class="thought-bubble">
+      What's the surprise? 🤔
+    </div>
+
+    <!-- Animated Teddy Bear SVG -->
+    <svg class="teddy-svg" viewBox="0 0 200 220">
+      <defs>
+        <radialGradient id="furGrad" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#e29b52"/>
+          <stop offset="70%" stop-color="#b66b28"/>
+          <stop offset="100%" stop-color="#7a4111"/>
+        </radialGradient>
+        <linearGradient id="hoodieGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7b1fa2"/>
+          <stop offset="100%" stop-color="#4a148c"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Feet -->
+      <ellipse cx="55" cy="195" rx="22" ry="15" fill="url(#furGrad)" />
+      <ellipse cx="55" cy="195" rx="14" ry="9" fill="#e29b52" />
+      <ellipse cx="145" cy="195" rx="22" ry="15" fill="url(#furGrad)" />
+      <ellipse cx="145" cy="195" rx="14" ry="9" fill="#e29b52" />
+
+      <!-- Hoodie Body -->
+      <path d="M 60 120 C 50 150, 50 180, 70 190 C 90 195, 110 195, 130 190 C 150 180, 150 150, 140 120 Z" fill="url(#hoodieGrad)" />
+      <path d="M 100 145 C 100 140, 92 135, 88 142 C 84 148, 100 158, 100 158 C 100 158, 116 148, 112 142 C 108 135, 100 140, 100 145 Z" fill="#e91e63" />
+
+      <!-- Left Rest Arm -->
+      <g>
+        <path d="M 60 125 C 45 135, 45 160, 65 165 C 75 165, 80 145, 70 130 Z" fill="url(#hoodieGrad)" />
+        <circle cx="60" cy="165" r="10" fill="url(#furGrad)" />
+      </g>
+
+      <!-- Animated Head -->
+      <g class="teddy-head">
+        <circle cx="55" cy="50" r="18" fill="url(#furGrad)" />
+        <circle cx="55" cy="50" r="10" fill="#e29b52" />
+        <circle cx="145" cy="50" r="18" fill="url(#furGrad)" />
+        <circle cx="145" cy="50" r="10" fill="#e29b52" />
+        <circle cx="100" cy="80" r="42" fill="url(#furGrad)" />
+        <ellipse cx="100" cy="92" rx="18" ry="12" fill="#f5c999" />
+        <ellipse cx="100" cy="87" rx="7" ry="5" fill="#222" />
+        <circle cx="83" cy="73" r="6" fill="#150a00" />
+        <circle cx="81" cy="71" r="2" fill="#fff" />
+        <circle cx="117" cy="73" r="6" fill="#150a00" />
+        <circle cx="115" cy="71" r="2" fill="#fff" />
+        <path d="M 77 64 Q 83 60 89 65" stroke="#4a2506" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        <path d="M 111 65 Q 117 60 123 64" stroke="#4a2506" stroke-width="2.5" fill="none" stroke-linecap="round" />
+      </g>
+
+      <!-- Animated Thinking Hand -->
+      <g class="teddy-thinking-hand">
+        <path d="M 135 125 C 145 110, 125 90, 112 90 C 100 95, 115 125, 125 135 Z" fill="url(#hoodieGrad)" />
+        <circle cx="112" cy="90" r="9" fill="url(#furGrad)" />
+      </g>
+    </svg>
+
+    <!-- Real-Time Analog Clock -->
+    <div class="clock-container">
+      <div class="clock-bell-left"></div>
+      <div class="clock-bell-right"></div>
+      <div class="clock-foot-left"></div>
+      <div class="clock-foot-right"></div>
+      
+      <div class="clock-body">
+        <div class="clock-center"></div>
+        <div class="hand hour" id="hourHand"></div>
+        <div class="hand minute" id="minuteHand"></div>
+        <div class="hand second" id="secondHand"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards Section -->
+  <div class="cards-container">
+    
+    <!-- Countdown Card -->
+    <div class="countdown-card">
+      <div class="countdown-title">
+        <span>💕</span> Surprise Reveals In <span>💕</span>
+      </div>
+      <div class="timer-boxes">
+        <div class="time-block">
+          <div class="time-box" id="hours">02</div>
+          <span class="time-label">Hours</span>
+        </div>
+        <div class="colon">:</div>
+        <div class="time-block">
+          <div class="time-box" id="minutes">15</div>
+          <span class="time-label">Minutes</span>
+        </div>
+        <div class="colon">:</div>
+        <div class="time-block">
+          <div class="time-box" id="seconds">37</div>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wish Info Banner -->
+    <div class="info-card">
+      <span style="font-size:1.5rem;">⭐</span>
+      <div class="info-card-text">
+        Your <span class="highlight-gold">special wish</span> is on the way...<br>
+        Hang tight, it will be worth the wait!
+      </div>
+      <span style="font-size:1.5rem; color:#ff2a8d;">💖</span>
+    </div>
+
+    <!-- Notification Banner -->
+    <div class="notification-card">
+      <div class="notif-left">
+        <div class="notif-icon">🕒</div>
+        <div class="notif-text">You will get a notification<br>when the surprise is ready!</div>
+      </div>
+      <span style="font-size:1.5rem; color:#ffd700;">🔔</span>
+    </div>
+
+  </div>
+
+  <script>
+    // Real-Time Clock Hands Update
+    function updateAnalogClock() {
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
+
+      const secondDeg = (seconds / 60) * 360;
+      const minuteDeg = ((minutes + seconds / 60) / 60) * 360;
+      const hourDeg = (((hours % 12) + minutes / 60) / 12) * 360;
+
+      document.getElementById('secondHand').style.transform = `rotate(${secondDeg}deg)`;
+      document.getElementById('minuteHand').style.transform = `rotate(${minuteDeg}deg)`;
+      document.getElementById('hourHand').style.transform = `rotate(${hourDeg}deg)`;
+    }
+
+    // Countdown Timer Logic
+    let totalSeconds = (2 * 3600) + (15 * 60) + 37;
+
+    function updateCountdown() {
+      if (totalSeconds <= 0) {
+        document.getElementById('hours').innerText = "00";
+        document.getElementById('minutes').innerText = "00";
+        document.getElementById('seconds').innerText = "00";
+        return;
+      }
+
+      const hrs = Math.floor(totalSeconds / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+
+      document.getElementById('hours').innerText = String(hrs).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(mins).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(secs).padStart(2, '0');
+
+      totalSeconds--;
+    }
+
+    setInterval(updateAnalogClock, 1000);
+    setInterval(updateCountdown, 1000);
+
+    updateAnalogClock();
+    updateCountdown();
+  </script>
 
 </body>
 </html>

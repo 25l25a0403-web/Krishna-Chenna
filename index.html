@@ -19,12 +19,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      /* Background setup */
+      justify-content: center;
+      /* Replace 'background.jpg' with your image file path */
       background: url('image/file_000000004fa081fab7b1fedd60ec10cd.png') no-repeat center center fixed;
       background-size: cover;
-      overflow-x: hidden;
-      padding: 2rem 1rem;
     }
 
     /* Glassmorphism Card Overlay */
@@ -34,27 +32,25 @@
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 182, 193, 0.2);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 2.5rem;
       max-width: 500px;
       width: 90%;
       text-align: center;
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-      z-index: 10;
-      margin-top: 1rem;
     }
 
     h1 {
-      font-size: 2rem;
-      color: #ffb7c5;
-      margin-bottom: 0.8rem;
+      font-size: 2.2rem;
+      color: #ffb7c5; /* Soft rose color matching the glow */
+      margin-bottom: 1rem;
       text-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
     }
 
     p {
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: 1.1rem;
+      line-height: 1.6;
       color: #f3e5f5;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn {
@@ -75,160 +71,6 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
     }
-
-    /* Scene Area for Teddy & Clock */
-    .interactive-scene {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 15px;
-      width: 100%;
-      max-width: 600px;
-      margin-top: auto;
-      filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
-    }
-
-    /* SVG Teddy Bear Styling & Keyframes */
-    .teddy-svg {
-      width: 200px;
-      height: 220px;
-      overflow: visible;
-    }
-
-    /* Head Motion Animation */
-    .teddy-head {
-      transform-origin: 100px 95px;
-      animation: headMotion 6s ease-in-out infinite alternate;
-    }
-
-    /* Hand / Arm Motion Animation */
-    .teddy-thinking-hand {
-      transform-origin: 112px 90px;
-      animation: handThinkingMotion 4s ease-in-out infinite alternate;
-    }
-
-    .teddy-left-arm {
-      transform-origin: 60px 110px;
-      animation: armRestMotion 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes headMotion {
-      0% { transform: rotate(0deg); }
-      30% { transform: rotate(-3deg) translateY(1px); }
-      70% { transform: rotate(4deg); }
-      100% { transform: rotate(-1deg); }
-    }
-
-    @keyframes handThinkingMotion {
-      0% { transform: rotate(0deg); }
-      50% { transform: rotate(-4deg) translateY(-2px); }
-      100% { transform: rotate(2deg); }
-    }
-
-    @keyframes armRestMotion {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(-3deg); }
-    }
-
-    /* Analog Clock Styles */
-    .clock-container {
-      position: relative;
-      width: 110px;
-      height: 130px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .clock-body {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, #fffdf0 0%, #e6cb96 70%, #8a5a27 100%);
-      border: 6px solid #d4af37;
-      border-radius: 50%;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 8px 16px rgba(0,0,0,0.6);
-    }
-
-    /* Clock Bells and Feet */
-    .clock-bell-left, .clock-bell-right {
-      position: absolute;
-      top: -12px;
-      width: 28px;
-      height: 16px;
-      background: linear-gradient(135deg, #ffd700, #b8860b);
-      border-radius: 15px 15px 0 0;
-    }
-    .clock-bell-left { left: 4px; transform: rotate(-30deg); }
-    .clock-bell-right { right: 4px; transform: rotate(30deg); }
-
-    .clock-foot-left, .clock-foot-right {
-      position: absolute;
-      bottom: 22px;
-      width: 10px;
-      height: 18px;
-      background: #b8860b;
-      z-index: -1;
-    }
-    .clock-foot-left { left: 16px; transform: rotate(25deg); }
-    .clock-foot-right { right: 16px; transform: rotate(-25deg); }
-
-    /* Dial Markings */
-    .clock-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 8px;
-      height: 8px;
-      background: #333;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 5;
-    }
-
-    .number {
-      position: absolute;
-      font-size: 10px;
-      font-weight: bold;
-      color: #332005;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      padding: 4px;
-    }
-
-    /* Clock Hands */
-    .hand {
-      position: absolute;
-      bottom: 50%;
-      left: 50%;
-      transform-origin: bottom center;
-      background: #222;
-      border-radius: 4px;
-      z-index: 4;
-    }
-
-    .hand.hour {
-      width: 4px;
-      height: 26px;
-      margin-left: -2px;
-    }
-
-    .hand.minute {
-      width: 3px;
-      height: 36px;
-      margin-left: -1.5px;
-      background: #111;
-    }
-
-    .hand.second {
-      width: 1.5px;
-      height: 40px;
-      margin-left: -0.75px;
-      background: #e91e63;
-    }
   </style>
 </head>
 <body>
@@ -238,125 +80,6 @@
     <p>Join us on a walk down this magical cobblestone lane as we celebrate romance, light, and memorable moments.</p>
     <a href="#" class="btn">Explore More</a>
   </main>
-
-  <div class="interactive-scene">
-    <!-- Animated Teddy Bear SVG -->
-    <svg class="teddy-svg" viewBox="0 0 200 220">
-      <defs>
-        <!-- Fur Gradient -->
-        <radialGradient id="furGrad" cx="40%" cy="40%" r="60%">
-          <stop offset="0%" stop-color="#e29b52"/>
-          <stop offset="70%" stop-color="#b66b28"/>
-          <stop offset="100%" stop-color="#7a4111"/>
-        </radialGradient>
-        <!-- Hoodie Gradient -->
-        <linearGradient id="hoodieGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#7b1fa2"/>
-          <stop offset="100%" stop-color="#4a148c"/>
-        </linearGradient>
-      </defs>
-
-      <!-- Feet -->
-      <ellipse cx="55" cy="195" rx="22" ry="15" fill="url(#furGrad)" />
-      <ellipse cx="55" cy="195" rx="14" ry="9" fill="#e29b52" />
-      <ellipse cx="145" cy="195" rx="22" ry="15" fill="url(#furGrad)" />
-      <ellipse cx="145" cy="195" rx="14" ry="9" fill="#e29b52" />
-
-      <!-- Hoodie Body -->
-      <path d="M 60 120 C 50 150, 50 180, 70 190 C 90 195, 110 195, 130 190 C 150 180, 150 150, 140 120 Z" fill="url(#hoodieGrad)" />
-      <!-- Heart Pendant -->
-      <path d="M 100 145 C 100 140, 92 135, 88 142 C 84 148, 100 158, 100 158 C 100 158, 116 148, 112 142 C 108 135, 100 140, 100 145 Z" fill="#e91e63" />
-
-      <!-- Left Rest Arm -->
-      <g class="teddy-left-arm">
-        <path d="M 60 125 C 45 135, 45 160, 65 165 C 75 165, 80 145, 70 130 Z" fill="url(#hoodieGrad)" />
-        <circle cx="60" cy="165" r="10" fill="url(#furGrad)" />
-      </g>
-
-      <!-- Head & Thinking Arm Group -->
-      <g class="teddy-head">
-        <!-- Ears -->
-        <circle cx="55" cy="50" r="18" fill="url(#furGrad)" />
-        <circle cx="55" cy="50" r="10" fill="#e29b52" />
-        <circle cx="145" cy="50" r="18" fill="url(#furGrad)" />
-        <circle cx="145" cy="50" r="10" fill="#e29b52" />
-        
-        <!-- Head Base -->
-        <circle cx="100" cy="80" r="42" fill="url(#furGrad)" />
-
-        <!-- Muzzle -->
-        <ellipse cx="100" cy="92" rx="18" ry="12" fill="#f5c999" />
-        <ellipse cx="100" cy="87" rx="7" ry="5" fill="#222" />
-
-        <!-- Eyes -->
-        <circle cx="83" cy="73" r="6" fill="#150a00" />
-        <circle cx="81" cy="71" r="2" fill="#fff" />
-        <circle cx="117" cy="73" r="6" fill="#150a00" />
-        <circle cx="115" cy="71" r="2" fill="#fff" />
-
-        <!-- Eyebrows (Thinking expression) -->
-        <path d="M 77 64 Q 83 60 89 65" stroke="#4a2506" stroke-width="2.5" fill="none" stroke-linecap="round" />
-        <path d="M 111 65 Q 117 60 123 64" stroke="#4a2506" stroke-width="2.5" fill="none" stroke-linecap="round" />
-      </g>
-
-      <!-- Thinking Hand (Paws resting under chin) -->
-      <g class="teddy-thinking-hand">
-        <path d="M 135 125 C 145 110, 125 90, 112 90 C 100 95, 115 125, 125 135 Z" fill="url(#hoodieGrad)" />
-        <circle cx="112" cy="90" r="9" fill="url(#furGrad)" />
-      </g>
-    </svg>
-
-    <!-- Real-time Working Analog Clock -->
-    <div class="clock-container">
-      <div class="clock-bell-left"></div>
-      <div class="clock-bell-right"></div>
-      <div class="clock-foot-left"></div>
-      <div class="clock-foot-right"></div>
-      
-      <div class="clock-body">
-        <div class="clock-center"></div>
-        <div class="number" style="transform: rotate(30deg);"><span style="display:inline-block; transform: rotate(-30deg);">1</span></div>
-        <div class="number" style="transform: rotate(60deg);"><span style="display:inline-block; transform: rotate(-60deg);">2</span></div>
-        <div class="number" style="transform: rotate(90deg);"><span style="display:inline-block; transform: rotate(-90deg);">3</span></div>
-        <div class="number" style="transform: rotate(120deg);"><span style="display:inline-block; transform: rotate(-120deg);">4</span></div>
-        <div class="number" style="transform: rotate(150deg);"><span style="display:inline-block; transform: rotate(-150deg);">5</span></div>
-        <div class="number" style="transform: rotate(180deg);"><span style="display:inline-block; transform: rotate(-180deg);">6</span></div>
-        <div class="number" style="transform: rotate(210deg);"><span style="display:inline-block; transform: rotate(-210deg);">7</span></div>
-        <div class="number" style="transform: rotate(240deg);"><span style="display:inline-block; transform: rotate(-240deg);">8</span></div>
-        <div class="number" style="transform: rotate(270deg);"><span style="display:inline-block; transform: rotate(-270deg);">9</span></div>
-        <div class="number" style="transform: rotate(300deg);"><span style="display:inline-block; transform: rotate(-300deg);">10</span></div>
-        <div class="number" style="transform: rotate(330deg);"><span style="display:inline-block; transform: rotate(-330deg);">11</span></div>
-        <div class="number" style="transform: rotate(0deg);"><span style="display:inline-block;">12</span></div>
-
-        <!-- Clock Hands -->
-        <div class="hand hour" id="hourHand"></div>
-        <div class="hand minute" id="minuteHand"></div>
-        <div class="hand second" id="secondHand"></div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Real-Time Clock Functionality
-    function updateClock() {
-      const now = new Date();
-      const seconds = now.getSeconds();
-      const minutes = now.getMinutes();
-      const hours = now.getHours();
-
-      const secondDeg = (seconds / 60) * 360;
-      const minuteDeg = ((minutes + seconds / 60) / 60) * 360;
-      const hourDeg = (((hours % 12) + minutes / 60) / 12) * 360;
-
-      document.getElementById('secondHand').style.transform = `rotate(${secondDeg}deg)`;
-      document.getElementById('minuteHand').style.transform = `rotate(${minuteDeg}deg)`;
-      document.getElementById('hourHand').style.transform = `rotate(${hourDeg}deg)`;
-    }
-
-    // Run clock update every second
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
 
 </body>
 </html>

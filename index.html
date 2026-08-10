@@ -1,85 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Magical Evening</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wish With Teddy</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset and Base Styles */
+    :root {
+      --bg-dark: #0d0614;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --primary-pink: #ff4da6;
+      --primary-purple: #9b51e0;
+      --text-main: #ffffff;
+      --text-muted: #a0a0b0;
+      --gradient-btn: linear-gradient(135deg, #e052a0 0%, #f15c41 50%, #9b51e0 100%);
+      --gradient-purple: linear-gradient(135deg, #c471ed 0%, #f64f59 50%, #120c1f 100%);
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      font-family: 'Georgia', serif;
-      color: #fff;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
       min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(13, 6, 20, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #ff416c, #ff4b2b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 0 10px rgba(255, 75, 43, 0.5);
+    }
+
+    .menu-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.05);
+    }
+
+    /* Sidebar Drawer */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100%;
+      background: #140a21;
+      border-left: 1px solid var(--card-border);
+      z-index: 999;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .sidebar-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 12px 15px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .wish-now-sidebar-btn {
+      margin-top: 10px;
+      background: var(--gradient-btn);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(224, 82, 160, 0.4);
+    }
+
+    .sidebar-teddy-decor {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .sidebar-teddy-decor img {
+      width: 130px;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 5% 60px;
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      /* Replace 'background.jpg' with your image file path */
-      background: url('image/file_00000000d3288211a9d052bccbdd5b7d.png') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    /* Glassmorphism Card Overlay */
-    .content-card {
-      background: rgba(20, 10, 25, 0.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 182, 193, 0.2);
-      border-radius: 16px;
-      padding: 2.5rem;
-      max-width: 500px;
-      width: 90%;
       text-align: center;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     }
 
-    h1 {
-      font-size: 2.2rem;
-      color: #ffb7c5; /* Soft rose color matching the glow */
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
+    .badge {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #e0b0ff;
+      margin-bottom: 25px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    p {
-      font-size: 1.1rem;
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin-bottom: 30px;
       line-height: 1.6;
-      color: #f3e5f5;
-      margin-bottom: 1.5rem;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
-      color: #fff;
-      background: linear-gradient(135deg, #e91e63, #9c27b0);
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 300px;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #d946ef, #8b5cf6);
+      color: white;
       border: none;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(217, 70, 239, 0.4);
+      transition: transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
-    .btn:hover {
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+    }
+
+    /* Hero Image Wrapper */
+    .hero-image-container {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(155, 81, 224, 0.2);
+      border: 1px solid var(--card-border);
+      position: relative;
+      margin-bottom: 50px;
+    }
+
+    .hero-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 70px;
+    }
+
+    @media (min-width: 768px) {
+      .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .hero-title { font-size: 3.5rem; }
+      .hero-cta { flex-direction: row; max-width: none; justify-content: center; }
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 15px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: #e070ff;
+      font-size: 1.2rem;
+    }
+
+    .feature-card p {
+      font-size: 0.85rem;
+      color: #e0e0e0;
+      font-weight: 500;
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 40px 5% 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-tag {
+      color: #ff7eb3;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 40px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .steps-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 25px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-icon-3d {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      font-size: 2.5rem;
+      color: #ff7eb3;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    }
+
+    .step-number {
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin: 0 auto 10px;
+      color: #fff;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Floating Animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
   </style>
 </head>
 <body>
 
-  <main class="content-card">
-    <h1>An Evening to Remember</h1>
-    <p>Join us on a walk down this magical cobblestone lane as we celebrate romance, light, and memorable moments.</p>
-    <a href="#" class="btn">Explore More</a>
-  </main>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+      Wish With Teddy
+    </a>
+    <button class="menu-btn" id="openMenuBtn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
 
+  <!-- Sidebar Overlay & Drawer -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="sidebar-header">
+        <a href="#" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-heart"></i></div>
+          Teddy
+        </a>
+        <button class="close-btn" id="closeMenuBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Teddy inside Sidebar -->
+      <div class="sidebar-teddy-decor">
+        <img src="1000261620.png" alt="Teddy Bear Icon" id="sidebarTeddyImg">
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="sidebar-nav">
+        <a href="#how-it-works"><i class="fa-solid fa-wand-magic-sparkles"></i> How it works</a>
+        <a href="#pricing"><i class="fa-solid fa-tag"></i> Pricing</a>
+        <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+        <a href="#dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      </nav>
+    </div>
+
+    <!-- Wish Now Button inside Sidebar -->
+    <a href="#wish-now" class="wish-now-sidebar-btn">
+      Wish Now <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </aside>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="badge">
+      <i class="fa-solid fa-sparkles"></i> A gift they'll never forget
+    </div>
+    
+    <h1 class="hero-title">
+      Create <span>magical wishes</span> with teddy surprises
+    </h1>
+    
+    <p class="hero-subtitle">
+      Build a beautiful birthday or anniversary gift website in minutes. Add teddy messages, unlock surprises, and make their day unforgettable.
+    </p>
+
+    <div class="hero-cta">
+      <button class="btn-primary">Create Your Wish &rarr;</button>
+      <button class="btn-secondary"><i class="fa-solid fa-circle-play"></i> See Live Demo</button>
+    </div>
+
+    <!-- Suitable Hero Image Display -->
+    <div class="hero-image-container">
+      <img src="image/file_00000000036c82069bc5959857624223.png" alt="3D Real Teddy Bear with Gift Box">
+    </div>
+
+    <!-- Feature Highlights -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-gift"></i></div>
+        <p>Personalized Gift Website</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-lock"></i></div>
+        <p>Unlock Secret Surprises</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-images"></i></div>
+        <p>Photo Memories & Messages</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-share-nodes"></i></div>
+        <p>Share & Make Them Smile</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" id="how-it-works">
+    <span class="section-tag">♥ HOW IT WORKS ♥</span>
+    <h2 class="section-title">Create a Magical Wish in 4 Easy Steps</h2>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon-3d">🎁</div>
+        <div class="step-number">1</div>
+        <h3>Create</h3>
+        <p>Add name, occasion and personalize your gift website.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon-3d">🔒</div>
+        <div class="step-number">2</div>
+        <h3>Unlock</h3>
+        <p>They unlock scenes by swiping and discovering surprises.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon-3d">🧸</div>
+        <div class="step-number">3</div>
+        <h3>Surprise</h3>
+        <p>Teddy messages, photos, games and sweet moments.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-icon-3d">💖</div>
+        <div class="step-number">4</div>
+        <h3>Share</h3>
+        <p>Share the link and make their special day unforgettable.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Sidebar Functionality
+    const openMenuBtn = document.getElementById('openMenuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function toggleSidebar(open) {
+      if (open) {
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+      } else {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+      }
+    }
+
+    openMenuBtn.addEventListener('click', () => toggleSidebar(true));
+    closeMenuBtn.addEventListener('click', () => toggleSidebar(false));
+    sidebarOverlay.addEventListener('click', () => toggleSidebar(false));
+
+    // Close menu when clicking navigation items
+    document.querySelectorAll('.sidebar-nav a, .wish-now-sidebar-btn').forEach(link => {
+      link.addEventListener('click', () => toggleSidebar(false));
+    });
+  </script>
 </body>
 </html>

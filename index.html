@@ -15,6 +15,9 @@
             --primary-purple: #8b5cf6;
             --text-light: #ffffff;
             --text-muted: #a1a1aa;
+            
+            /* PLACE YOUR DIRECT IMAGE URL / PATH HERE */
+            --hero-img-url: '1000261770.png';
         }
 
         * {
@@ -195,37 +198,42 @@
             padding: 0 16px 40px 16px;
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section with Right-Aligned Full Image --- */
         .hero {
             position: relative;
-            padding: 24px 8px 36px 8px;
+            padding: 28px 16px 36px 16px;
             border-radius: 24px;
             overflow: hidden;
             margin-bottom: 24px;
-            min-height: 580px;
+            min-height: 520px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            background: #0d041e;
         }
 
+        /* Container for background image positioned on the right */
         .hero-bg {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 65%;
             height: 100%;
             z-index: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
             pointer-events: none;
         }
 
         .hero-bg img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center bottom;
-            opacity: 0.95;
+            object-fit: contain; /* Keeps full image visible without cropping */
+            object-position: right center; /* Aligns full image to the right */
         }
 
+        /* Soft Gradient Overlay for Text Readability */
         .hero-bg-overlay {
             position: absolute;
             top: 0;
@@ -233,16 +241,16 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 85% 55%, rgba(7, 2, 16, 0) 0%, rgba(7, 2, 16, 0.85) 80%),
-                linear-gradient(180deg, rgba(7, 2, 16, 0.85) 0%, rgba(7, 2, 16, 0.3) 35%, rgba(7, 2, 16, 0.95) 95%),
-                linear-gradient(90deg, rgba(7, 2, 16, 0.95) 0%, rgba(7, 2, 16, 0.5) 60%, rgba(7, 2, 16, 0.15) 100%);
+                linear-gradient(90deg, #0d041e 0%, #0d041e 40%, rgba(13, 4, 30, 0.6) 65%, rgba(13, 4, 30, 0) 100%),
+                linear-gradient(180deg, rgba(13, 4, 30, 0.5) 0%, transparent 20%, transparent 80%, #0d041e 100%);
             z-index: 1;
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 82%;
+            max-width: 70%;
         }
 
         .badge {
@@ -250,8 +258,8 @@
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 20px;
             font-size: 0.78rem;
             color: #d8b4fe;
@@ -260,7 +268,7 @@
         }
 
         .hero h1 {
-            font-size: 2.1rem;
+            font-size: 2rem;
             line-height: 1.18;
             font-weight: 700;
             margin-bottom: 16px;
@@ -276,7 +284,7 @@
         }
 
         .hero p {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.78);
             font-size: 0.85rem;
             line-height: 1.5;
             margin-bottom: 24px;
@@ -287,7 +295,7 @@
             flex-direction: column;
             gap: 12px;
             width: 100%;
-            max-width: 280px;
+            max-width: 240px;
         }
 
         .btn-primary {
@@ -307,8 +315,8 @@
         }
 
         .btn-secondary {
-            background: rgba(20, 10, 35, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(20, 10, 35, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
             padding: 13px 20px;
             border-radius: 12px;
@@ -322,7 +330,7 @@
             backdrop-filter: blur(10px);
         }
 
-        /* --- 2x2 Feature Grid --- */
+        /* --- Individual 2x2 Feature Cards Grid --- */
         .features-grid-2x2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -446,7 +454,7 @@
             line-height: 1.2;
         }
 
-        /* --- Bottom Banner --- */
+        /* --- Bottom Callout Banner --- */
         .bottom-banner {
             background: linear-gradient(135deg, rgba(22, 12, 38, 0.9), rgba(40, 15, 60, 0.9));
             border: 1px solid rgba(255, 105, 180, 0.25);
@@ -499,11 +507,11 @@
             white-space: nowrap;
         }
 
-        /* Responsive Layout */
+        /* Desktop Responsiveness */
         @media (min-width: 768px) {
-            .container { max-width: 800px; }
-            .hero-content { max-width: 60%; }
-            .hero h1 { font-size: 2.8rem; }
+            .container { max-width: 850px; }
+            .hero-content { max-width: 55%; }
+            .hero h1 { font-size: 2.6rem; }
             .hero-ctas { flex-direction: row; max-width: 100%; }
             .features-grid-2x2 { grid-template-columns: repeat(4, 1fr); }
             .step-desc { font-size: 0.72rem; }
@@ -523,7 +531,7 @@
         </button>
     </header>
 
-    <!-- Slide-Out Sidebar -->
+    <!-- Slide-Out Sidebar Menu -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar">
         <button class="sidebar-close" id="closeMenuBtn">
@@ -558,12 +566,15 @@
     <!-- Main Container -->
     <div class="container">
         
-        <!-- Hero Section -->
+        <!-- Hero Section with Right Side Full Image -->
         <section class="hero">
+            <!-- Full Image on Right Side -->
             <div class="hero-bg">
-                <!-- UPDATED IMAGE LINK -->
-                <img src="image/file_00000000108481fabf6720f1507a32f5.png" alt="3D Teddy Bear with Surprise Box">
+                <!-- UPDATE YOUR IMAGE SRC URL HERE -->
+                <img src="image/file_00000000108481fabf6720f1507a32f5.png" alt="Teddy Bear Wish Surprise">
             </div>
+            
+            <!-- Overlay to gradient fade text to image smoothly -->
             <div class="hero-bg-overlay"></div>
 
             <div class="hero-content">
@@ -586,7 +597,7 @@
             </div>
         </section>
 
-        <!-- Feature Grid -->
+        <!-- Individual 2x2 Feature Cards -->
         <section class="features-grid-2x2">
             <div class="feature-card-item">
                 <div class="feature-card-icon"><i data-lucide="gift" style="width: 22px;"></i></div>

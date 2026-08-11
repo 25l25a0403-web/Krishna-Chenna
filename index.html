@@ -8,8 +8,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-dark: #070314;
-            --card-bg: rgba(22, 12, 38, 0.7);
+            --bg-dark: #080315;
+            --card-bg: rgba(20, 10, 36, 0.7);
             --card-border: rgba(168, 85, 247, 0.2);
             --primary-pink: #ff4d8d;
             --primary-purple: #8b5cf6;
@@ -40,7 +40,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(7, 3, 20, 0.85);
+            background: rgba(8, 3, 21, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -84,7 +84,7 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
-        /* --- Slide-Out Sidebar --- */
+        /* --- Slide-Out Sidebar Menu --- */
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -198,29 +198,27 @@
         .container {
             max-width: 480px;
             margin: 0 auto;
-            padding: 0 16px 40px 16px;
+            padding: 0 18px 40px 18px;
         }
 
-        /* --- Hero Section matching Image Design --- */
+        /* --- Hero Section with Custom Background Alignment --- */
         .hero {
             position: relative;
-            padding: 24px 16px 36px 16px;
+            padding: 24px 16px 32px 16px;
             border-radius: 24px;
             overflow: hidden;
             margin-bottom: 24px;
-            background: #100624;
-            min-height: 480px;
+            background: #080315;
+            min-height: 520px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            align-items: center;
         }
 
-        /* Direct Hero Background Image */
         .hero-bg {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: -20%;
+            width: 140%;
             height: 100%;
             z-index: 0;
             pointer-events: none;
@@ -230,11 +228,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 70% center;
-            filter: brightness(0.95) contrast(1.05);
+            object-position: right bottom;
+            opacity: 0.85;
         }
 
-        /* Overlay Gradients to protect text readability while keeping the 3D teddy visible */
+        /* Gradient mask fading left text area smoothly into image */
         .hero-bg-overlay {
             position: absolute;
             top: 0;
@@ -242,15 +240,21 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(90deg, rgba(16, 6, 36, 0.95) 0%, rgba(16, 6, 36, 0.75) 55%, rgba(16, 6, 36, 0.25) 100%),
-                linear-gradient(180deg, rgba(16, 6, 36, 0.6) 0%, rgba(16, 6, 36, 0.2) 50%, rgba(16, 6, 36, 0.9) 100%);
+                linear-gradient(90deg, 
+                    rgba(8, 3, 21, 0.98) 0%, 
+                    rgba(8, 3, 21, 0.85) 45%, 
+                    rgba(8, 3, 21, 0.25) 100%),
+                linear-gradient(180deg, 
+                    rgba(8, 3, 21, 0.5) 0%, 
+                    transparent 50%, 
+                    rgba(8, 3, 21, 0.95) 100%);
             z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 78%;
+            max-width: 82%;
         }
 
         .badge {
@@ -258,50 +262,50 @@
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 20px;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: #d8b4fe;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             backdrop-filter: blur(8px);
         }
 
         .hero h1 {
-            font-size: 1.95rem;
+            font-size: 2.1rem;
             line-height: 1.2;
-            font-weight: 800;
-            margin-bottom: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
             color: #ffffff;
             letter-spacing: -0.5px;
         }
 
-        .hero h1 span {
+        .hero h1 span.highlight {
             font-style: italic;
-            font-weight: 400;
-            color: #d8b4fe;
-            background: linear-gradient(90deg, #d8b4fe, #ff7ba0);
+            background: linear-gradient(90deg, #d8b4fe, #ff9ebb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
-            line-height: 1.45;
-            margin-bottom: 22px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            font-weight: 400;
         }
 
         .hero-ctas {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            width: 100%;
         }
 
         .btn-primary {
             background: linear-gradient(90deg, #e052a0 0%, #a855f7 100%);
             color: white;
-            padding: 13px 20px;
+            padding: 14px 20px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
@@ -309,8 +313,8 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 20px rgba(224, 82, 160, 0.4);
+            font-size: 0.95rem;
+            box-shadow: 0 4px 20px rgba(224, 82, 160, 0.35);
             border: none;
         }
 
@@ -318,7 +322,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 12px 20px;
+            padding: 13px 20px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 500;
@@ -326,7 +330,7 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             backdrop-filter: blur(10px);
         }
 
@@ -342,18 +346,18 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 18px;
-            padding: 18px 10px;
+            padding: 20px 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 10px;
+            gap: 12px;
             backdrop-filter: blur(10px);
         }
 
         .feature-card-icon {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background: rgba(139, 92, 246, 0.15);
             border: 1px solid rgba(139, 92, 246, 0.3);
             border-radius: 50%;
@@ -364,7 +368,7 @@
         }
 
         .feature-card-item span {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.3;
             font-weight: 500;
@@ -504,10 +508,11 @@
         /* Desktop Responsiveness */
         @media (min-width: 768px) {
             .container { max-width: 800px; }
-            .hero-content { max-width: 55%; }
+            .hero-content { max-width: 60%; }
             .hero h1 { font-size: 2.8rem; }
             .hero-ctas { flex-direction: row; }
             .features-grid-2x2 { grid-template-columns: repeat(4, 1fr); }
+            .step-desc { font-size: 0.72rem; }
         }
     </style>
 </head>
@@ -559,10 +564,10 @@
     <!-- Main Container -->
     <div class="container">
         
-        <!-- Hero Section with Blended 3D Teddy Background Image -->
+        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-bg">
-                <img src="image/file_00000000036c82069bc5959857624223.png" alt="3D Teddy and Surprise Gift Scene">
+                <img src="image/file_00000000036c82069bc5959857624223.png" alt="3D Teddy with Glowing Gift Box">
             </div>
             <div class="hero-bg-overlay"></div>
 
@@ -571,7 +576,7 @@
                     <i data-lucide="sparkles" style="width: 12px; height: 12px;"></i> A gift they'll never forget
                 </div>
                 
-                <h1>Create a <span>magical</span> wish experience with teddy surprises 💕</h1>
+                <h1>Create a <span class="highlight">magical</span><br>wish experience<br>with teddy<br>surprises 💕</h1>
                 
                 <p>Build a beautiful birthday or anniversary gift website in minutes. Add teddy messages, unlock surprises, and make their day unforgettable.</p>
                 
@@ -586,7 +591,7 @@
             </div>
         </section>
 
-        <!-- Individual 2x2 Feature Grid Cards -->
+        <!-- Individual 2x2 Feature Cards -->
         <section class="features-grid-2x2">
             <div class="feature-card-item">
                 <div class="feature-card-icon"><i data-lucide="gift" style="width: 20px;"></i></div>
@@ -645,7 +650,7 @@
             </div>
         </section>
 
-        <!-- Bottom Banner Callout -->
+        <!-- Bottom Banner -->
         <div class="bottom-banner">
             <div class="banner-left">
                 <div class="banner-teddy">🧸</div>

@@ -15,9 +15,6 @@
             --primary-purple: #8b5cf6;
             --text-light: #ffffff;
             --text-muted: #a1a1aa;
-            
-            /* REPLACE WITH YOUR EXACT IMAGE FILE NAME OR PATH HERE */
-            --hero-img-url: url('1000261770.png');
         }
 
         * {
@@ -198,7 +195,7 @@
             padding: 0 16px 40px 16px;
         }
 
-        /* --- Hero Section with Custom Image Mask Overlay --- */
+        /* --- Hero Section --- */
         .hero {
             position: relative;
             padding: 24px 8px 36px 8px;
@@ -221,17 +218,14 @@
             pointer-events: none;
         }
 
-        .hero-bg-image {
+        .hero-bg img {
             width: 100%;
             height: 100%;
-            background-image: var(--hero-img-url);
-            background-size: cover;
-            background-position: center bottom;
-            background-repeat: no-repeat;
+            object-fit: cover;
+            object-position: center bottom;
             opacity: 0.95;
         }
 
-        /* Smooth Vignette Gradient Overlay for readability */
         .hero-bg-overlay {
             position: absolute;
             top: 0;
@@ -328,7 +322,7 @@
             backdrop-filter: blur(10px);
         }
 
-        /* --- Individual 2x2 Feature Cards Grid --- */
+        /* --- 2x2 Feature Grid --- */
         .features-grid-2x2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -452,7 +446,7 @@
             line-height: 1.2;
         }
 
-        /* --- Bottom Callout Banner --- */
+        /* --- Bottom Banner --- */
         .bottom-banner {
             background: linear-gradient(135deg, rgba(22, 12, 38, 0.9), rgba(40, 15, 60, 0.9));
             border: 1px solid rgba(255, 105, 180, 0.25);
@@ -505,7 +499,7 @@
             white-space: nowrap;
         }
 
-        /* Desktop Responsiveness */
+        /* Responsive Layout */
         @media (min-width: 768px) {
             .container { max-width: 800px; }
             .hero-content { max-width: 60%; }
@@ -529,7 +523,7 @@
         </button>
     </header>
 
-    <!-- Slide-Out Sidebar Menu -->
+    <!-- Slide-Out Sidebar -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <aside class="sidebar" id="sidebar">
         <button class="sidebar-close" id="closeMenuBtn">
@@ -567,7 +561,8 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-bg">
-                <div class="hero-bg-image"></div>
+                <!-- UPDATED IMAGE LINK -->
+                <img src="image/file_00000000108481fabf6720f1507a32f5.png" alt="3D Teddy Bear with Surprise Box">
             </div>
             <div class="hero-bg-overlay"></div>
 
@@ -591,7 +586,7 @@
             </div>
         </section>
 
-        <!-- Individual 2x2 Feature Cards -->
+        <!-- Feature Grid -->
         <section class="features-grid-2x2">
             <div class="feature-card-item">
                 <div class="feature-card-icon"><i data-lucide="gift" style="width: 22px;"></i></div>
